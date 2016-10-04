@@ -110,6 +110,9 @@ public:
     // SaveMap(const string &filename);
     // LoadMap(const string &filename);
 
+
+    void lastPose(cv::Mat &_location, cv::Mat &_rotation);
+
 private:
 
     // Input sensor

@@ -1596,6 +1596,14 @@ void Tracking::InformOnlyTracking(const bool &flag)
     mbOnlyTracking = flag;
 }
 
+void Tracking::lastPose(cv::Mat &_location, cv::Mat &_rotation)
+{
+    mPoseCopyingMutex.lock();
+    _location = mCurrentFrame.GetCameraCenter();
+    _rotation = mCurrentFrame.GetRotationInverse();
+    mPoseCopyingMutex.unlock();
+}
+
 
 
 } //namespace ORB_SLAM

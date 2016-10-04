@@ -36,7 +36,7 @@ void LoadImages(const string &strPathToSequence, vector<string> &vstrImageLeft,
 
 int main(int argc, char **argv)
 {
-    if(argc != 5) {
+    if(argc != 6) {
         cerr << endl << "Usage: ./liveZed [path_to_vocabulary] [path_to_settings] [zedCameraIndex] [resolution]" << endl;
         return 1;
     }
@@ -62,7 +62,7 @@ int main(int argc, char **argv)
     }
 
     // Create SLAM system. It initializes all system threads and gets ready to process frames.
-    ORB_SLAM2::System SLAM(argv[1],argv[2],ORB_SLAM2::System::STEREO,true);
+    ORB_SLAM2::System SLAM(argv[1],argv[2],ORB_SLAM2::System::STEREO, atoi(argv[5]) == 1?true:false);
     // Vector for tracking time statistics
     vector<float> vTimesTrack;
     cout << endl << "-------" << endl;
@@ -95,6 +95,10 @@ int main(int argc, char **argv)
         std::chrono::steady_clock::time_point t2 = std::chrono::steady_clock::now();
         double ttrack= std::chrono::duration_cast<std::chrono::duration<double> >(t2 - t1).count();
         vTimesTrack.push_back(ttrack);
+        std::cout << "time step: " << ttrack << std::endl;
+        cv::Mat location, rotation;
+        SLAM.lastPose(location, rotation);
+        std::cout << location << std::endl;
     }
 
     // Stop all threads

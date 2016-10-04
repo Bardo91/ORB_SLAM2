@@ -423,4 +423,11 @@ void System::SaveTrajectoryKITTI(const string &filename)
     cout << endl << "trajectory saved!" << endl;
 }
 
+void System::lastPose(cv::Mat &_location, cv::Mat &_rotation)
+{
+    mpTracker->lastPose(_location, _rotation);
+}
+
+
+
 } //namespace ORB_SLAM

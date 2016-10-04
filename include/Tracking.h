@@ -74,7 +74,7 @@ public:
     // Use this function if you have deactivated local mapping and you only want to localize the camera.
     void InformOnlyTracking(const bool &flag);
 
-
+    void lastPose(cv::Mat &_location, cv::Mat &_rotation);
 public:
 
     // Tracking states
@@ -114,7 +114,7 @@ public:
     bool mbOnlyTracking;
 
     void Reset();
-
+    std::mutex mPoseCopyingMutex;
 protected:
 
     // Main tracking function. It is independent of the input sensor.
