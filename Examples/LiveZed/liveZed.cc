@@ -98,7 +98,7 @@ int main(int argc, char **argv)
         std::cout << "time step: " << ttrack << std::endl;
         cv::Mat location, rotation;
         SLAM.lastPose(location, rotation);
-        std::cout << location << std::endl;
+        std::cout << rotation << std::endl;
     }
 
     // Stop all threads
